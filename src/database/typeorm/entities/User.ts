@@ -1,5 +1,8 @@
 import { Gender } from 'src/utils/constants';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Conversation } from './Conversation';
+import { Friend } from './Friend';
+import { Member } from './Member';
 
 @Entity({ name: 'users' })
 export class User {
@@ -13,14 +16,26 @@ export class User {
     password: string;
 
     @Column()
-    avtlink: string;
+    avatarLink: string;
 
     @Column()
     phone: string;
 
-    @Column({ type: 'timestamp' })
-    dob: Date;
+    @Column({ type: 'date' })
+    dob: string;
 
     @Column({ type: 'enum', enum: Gender, default: Gender.OTHER })
     gender: Gender;
+
+    @OneToMany(() => Conversation, (conversation) => conversation.host)
+    conversations: Conversation[];
+
+    @OneToMany(() => Member, (member) => member.user)
+    members: Member[];
+
+    @OneToMany(() => Friend, (friend) => friend.fromUser)
+    fromFriends: Friend;
+
+    @OneToMany(() => Friend, (friend) => friend.toUser)
+    toFriends: Friend;
 }
