@@ -13,6 +13,7 @@ export class AuthService implements IAuthService {
         @Inject(Services.USER) private readonly usersService: UsersService,
         private jwt: JwtService,
     ) {}
+
     async validateUser(userDetails: UserDetails): Promise<User> {
         const user = await this.usersService.findUser({
             email: userDetails.email,
@@ -39,12 +40,14 @@ export class AuthService implements IAuthService {
 
         return user;
     }
-    generateAccessToken(user: ValidateUserDetails): string {
+
+    generateAccessToken(user: ValidateUserDetails) {
         const payload: JwtPayload = { email: user.email, sub: user.id };
 
         return this.jwt.sign(payload);
     }
-    refreshToken(user: ValidateUserDetails): string {
+
+    refreshToken(user: ValidateUserDetails) {
         const payload: JwtPayload = { email: user.email, sub: user.id };
 
         return this.jwt.sign(payload);

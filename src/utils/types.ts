@@ -8,9 +8,9 @@ export type ValidateUserDetails = {
 
 export type UserDetails = {
     id?: number;
+    name?: string;
     email?: string;
     password?: string;
-    name?: string;
     avatarLink?: string;
     phone?: string;
     dob?: string;

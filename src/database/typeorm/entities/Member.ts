@@ -4,25 +4,25 @@ import {
     PrimaryGeneratedColumn,
     ManyToOne,
     OneToMany,
-} from 'typeorm';
-import { Conversation } from './Conversation';
-import { Message } from './Message';
-import { User } from './User';
+} from "typeorm"
+import { Conversation } from "./Conversation"
+import { Message } from "./Message"
+import { User } from "./User"
 
-@Entity({ name: 'members' })
+@Entity({ name: "members" })
 export class Member {
     @PrimaryGeneratedColumn()
-    id: number;
+    id: number
 
     @Column()
-    nickname: string;
+    nickname: string
 
     @ManyToOne(() => Conversation, (conversation) => conversation.members)
-    conversation: Conversation;
+    conversation: Conversation
 
     @ManyToOne(() => User, (user) => user.members)
-    user: User;
+    user: User
 
     @OneToMany(() => Message, (message) => message.member)
-    messages: Message[];
+    messages: Message[]
 }

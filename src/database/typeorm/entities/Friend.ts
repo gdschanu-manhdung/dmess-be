@@ -1,14 +1,14 @@
-import { Column, Entity, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
-import { User } from './User';
+import { Column, Entity, PrimaryGeneratedColumn, ManyToOne } from "typeorm"
+import { User } from "./User"
 
-@Entity({ name: 'friends' })
+@Entity({ name: "friends" })
 export class Friend {
     @PrimaryGeneratedColumn()
-    id: number;
+    id: number
 
     @ManyToOne(() => User, (user) => user.fromFriends)
-    fromUser: User;
+    fromUser: User
 
     @ManyToOne(() => User, (user) => user.toFriends)
-    toUser: User;
+    toUser: User
 }

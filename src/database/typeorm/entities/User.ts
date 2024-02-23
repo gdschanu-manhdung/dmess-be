@@ -1,44 +1,44 @@
-import { Gender } from 'src/utils/constants';
-import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
-import { Conversation } from './Conversation';
-import { Friend } from './Friend';
-import { Member } from './Member';
+import { Gender } from "src/utils/constants"
+import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from "typeorm"
+import { Conversation } from "./Conversation"
+import { Friend } from "./Friend"
+import { Member } from "./Member"
 
-@Entity({ name: 'users' })
+@Entity({ name: "users" })
 export class User {
     @PrimaryGeneratedColumn()
-    id: number;
+    id: number
 
     @Column()
-    name: string;
+    name: string
 
     @Column()
-    email: string;
+    email: string
 
     @Column()
-    password: string;
+    password: string
 
     @Column()
-    avatarLink: string;
+    avatarLink: string
 
     @Column()
-    phone: string;
+    phone: string
 
-    @Column({ type: 'date' })
-    dob: string;
+    @Column({ type: "date" })
+    dob: string
 
-    @Column({ type: 'enum', enum: Gender, default: Gender.OTHER })
-    gender: Gender;
+    @Column({ type: "enum", enum: Gender, default: Gender.OTHER })
+    gender: Gender
 
     @OneToMany(() => Conversation, (conversation) => conversation.host)
-    conversations: Conversation[];
+    conversations: Conversation[]
 
     @OneToMany(() => Member, (member) => member.user)
-    members: Member[];
+    members: Member[]
 
     @OneToMany(() => Friend, (friend) => friend.fromUser)
-    fromFriends: Friend;
+    fromFriends: Friend
 
     @OneToMany(() => Friend, (friend) => friend.toUser)
-    toFriends: Friend;
+    toFriends: Friend
 }
