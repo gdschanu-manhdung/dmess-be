@@ -1,4 +1,4 @@
-import { Gender } from './constants';
+import { Gender } from "./constants";
 
 export type ValidateUserDetails = {
     id?: number;
@@ -6,7 +6,7 @@ export type ValidateUserDetails = {
     password: string;
 };
 
-export type UserDetail = {
+export type UserDetails = {
     id?: number;
     email?: string;
     password?: string;
@@ -21,4 +21,9 @@ export type FindUserParams = {
     email?: string;
     name?: string;
     phone?: string;
+};
+
+export type JwtPayload = {
+    email: string;
+    sub: number;
 };

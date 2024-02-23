@@ -1,5 +1,5 @@
 {
-  "singleQuote": true,
-  "endOfLine": "lf",
-  "tabWidth": 4
+    "singleQuote": false,
+    "endOfLine": "lf",
+    "tabWidth": 4
 }
