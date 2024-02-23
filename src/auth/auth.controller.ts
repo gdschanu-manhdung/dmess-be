@@ -6,16 +6,27 @@ import {
     Res,
     HttpStatus,
     Inject,
+    Body,
 } from "@nestjs/common"
 import { Routes, Services } from "src/utils/constants"
 import { JwtAuthGuard, LocalAuthGuard } from "./utils/guard.auth"
 import { Request, Response } from "express"
 import { ValidateUserDetails } from "src/utils/types"
 import { AuthService } from "./auth.service"
+import { UsersService } from "src/users/users.service"
+import { CreateUserDto } from "./dto/CreateUser.dto"
 
 @Controller(Routes.AUTH)
 export class AuthController {
-    constructor(@Inject(Services.AUTH) private authService: AuthService) {}
+    constructor(
+        @Inject(Services.AUTH) private authService: AuthService,
+        @Inject(Services.USERS) private usersService: UsersService,
+    ) {}
+
+    @Post("register")
+    async register(@Body() createUserDto: CreateUserDto) {
+        return this.usersService.createUser(createUserDto)
+    }
 
     @UseGuards(LocalAuthGuard)
     @Post("login")

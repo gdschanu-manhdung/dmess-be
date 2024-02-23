@@ -12,9 +12,6 @@ export class UsersService implements IUsersService {
         @InjectRepository(User)
         private readonly userRepository: Repository<User>,
     ) {}
-    async getUsers() {
-        return await this.userRepository.find()
-    }
 
     async createUser(userDetails: UserDetails) {
         try {
@@ -29,17 +26,19 @@ export class UsersService implements IUsersService {
                 )
             }
 
-            const password = hashPassword(userDetails.password)
+            const password = await hashPassword(userDetails.password)
 
             const params = { ...userDetails, password }
-            const newUser = this.userRepository.create()
+            const newUser = this.userRepository.create(params)
             return await this.userRepository.save(newUser)
         } catch (error) {
             console.error(error)
         }
     }
 
-    findUser(findUserParams: FindUserParams): Promise<User> {
-        throw new Error("Method not implemented.")
+    async findUser(findUserParams: FindUserParams) {
+        return this.userRepository.findOne({
+            where: { email: findUserParams.email },
+        })
     }
 }
