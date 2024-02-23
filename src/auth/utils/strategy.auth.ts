@@ -38,7 +38,7 @@ export class JwtStrategy extends PassportStrategy(jwtStrategy) {
 }
 
 @Injectable()
-export class RefreshStrategy extends PassportStrategy(
+export class RefreshJwtStrategy extends PassportStrategy(
     jwtStrategy,
     "jwt-refresh",
 ) {
