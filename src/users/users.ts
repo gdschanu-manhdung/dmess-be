@@ -1,7 +1,7 @@
 import { User } from "src/database/typeorm/entities/User"
-import { FindUserParams, UserDetails } from "src/utils/types"
+import { FindUserQuery, UserDetails } from "src/utils/types"
 
 export interface IUsersService {
     createUser(userDetails: UserDetails): Promise<User>
-    findUser(findUserParams: FindUserParams): Promise<User>
+    findUser(findUserQuery: FindUserQuery): Promise<User>
 }

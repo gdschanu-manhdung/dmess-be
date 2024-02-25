@@ -1,5 +1,5 @@
 import { User } from "src/database/typeorm/entities/User"
-import { UserDetails, FindUserParams } from "src/utils/types"
+import { UserDetails, FindUserQuery } from "src/utils/types"
 import { IUsersService } from "./users"
 import { InjectRepository } from "@nestjs/typeorm"
 import { Repository } from "typeorm"
@@ -36,11 +36,10 @@ export class UsersService implements IUsersService {
         }
     }
 
-    async findUser(findUserParams: FindUserParams) {
+    async findUser(findUserQuery: FindUserQuery) {
         const user = await this.userRepository.findOne({
-            where: { email: findUserParams.email },
+            where: { email: findUserQuery.email },
         })
-        console.log(user)
         return user
     }
 }

@@ -19,8 +19,6 @@ export class AuthService implements IAuthService {
             email: userDetails.email,
         })
 
-        console.log(userDetails)
-
         if (!user) {
             throw new HttpException(
                 "Invalid Credentials",
