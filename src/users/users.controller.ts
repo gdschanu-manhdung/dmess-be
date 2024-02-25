@@ -18,7 +18,7 @@ export class UsersController {
     constructor(@Inject(Services.USERS) private usersService: UsersService) {}
 
     @UseGuards(JwtAuthGuard)
-    @Get("findUser")
+    @Get("findUserByEmail")
     async findUser(@Req() req: Request, @Res() res: Response) {
         const query = req.query as FindUserQuery
 
