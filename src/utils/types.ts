@@ -17,6 +17,10 @@ export type UserDetails = {
     gender?: Gender
 }
 
+export type FindUserQueryByEmail = {
+    email?: string
+}
+
 export type FindUserQuery = {
     email?: string
     name?: string

@@ -1,5 +1,9 @@
 import { User } from "src/database/typeorm/entities/User"
-import { UserDetails, FindUserQuery } from "src/utils/types"
+import {
+    UserDetails,
+    FindUserQueryByEmail,
+    FindUserQuery,
+} from "src/utils/types"
 import { IUsersService } from "./users"
 import { InjectRepository } from "@nestjs/typeorm"
 import { Repository } from "typeorm"
@@ -36,10 +40,21 @@ export class UsersService implements IUsersService {
         }
     }
 
-    async findUser(findUserQuery: FindUserQuery) {
+    async findUserByEmail(FindUserQueryByEmail: FindUserQueryByEmail) {
         const user = await this.userRepository.findOne({
-            where: { email: findUserQuery.email },
+            where: { email: FindUserQueryByEmail.email },
         })
         return user
+    }
+
+    async findUsers(findUserQuery: FindUserQuery): Promise<User[]> {
+        const users = await this.userRepository.find({
+            where: [
+                { email: findUserQuery.email },
+                { name: findUserQuery.name },
+                { phone: findUserQuery.phone },
+            ],
+        })
+        return users
     }
 }

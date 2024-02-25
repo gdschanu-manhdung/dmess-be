@@ -15,7 +15,7 @@ export class AuthService implements IAuthService {
     ) {}
 
     async validateUser(userDetails: UserDetails): Promise<User> {
-        const user = await this.usersService.findUser({
+        const user = await this.usersService.findUserByEmail({
             email: userDetails.email,
         })
 
