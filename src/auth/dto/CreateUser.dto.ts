@@ -1,10 +1,10 @@
 import {
-    IsDateString,
     IsEmail,
     IsNotEmpty,
     IsPhoneNumber,
     IsStrongPassword,
     MaxLength,
+    IsDateString,
 } from "class-validator"
 import { Gender } from "src/utils/constants"
 
@@ -25,8 +25,8 @@ export class CreateUserDto {
     @IsNotEmpty()
     phone: string
 
-    @IsDateString()
     @IsNotEmpty()
+    @IsDateString()
     dob: string
 
     @IsNotEmpty()

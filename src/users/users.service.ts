@@ -15,7 +15,7 @@ export class UsersService implements IUsersService {
 
     async createUser(userDetails: UserDetails) {
         try {
-            const existingUser = this.userRepository.findOne({
+            const existingUser = await this.userRepository.findOne({
                 where: { email: userDetails.email },
             })
 
@@ -28,7 +28,7 @@ export class UsersService implements IUsersService {
 
             const password = await hashPassword(userDetails.password)
 
-            const params = { ...userDetails, password }
+            const params = { ...userDetails, password, avatarLink: "" }
             const newUser = this.userRepository.create(params)
             return await this.userRepository.save(newUser)
         } catch (error) {
@@ -37,8 +37,10 @@ export class UsersService implements IUsersService {
     }
 
     async findUser(findUserParams: FindUserParams) {
-        return this.userRepository.findOne({
+        const user = await this.userRepository.findOne({
             where: { email: findUserParams.email },
         })
+        console.log(user)
+        return user
     }
 }
