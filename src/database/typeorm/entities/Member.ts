@@ -5,9 +5,9 @@ import {
     ManyToOne,
     OneToMany,
 } from "typeorm"
-import { Conversation } from "./Conversation"
-import { Message } from "./Message"
-import { User } from "./User"
+import { Conversation } from "./conversation"
+import { Message } from "./message"
+import { User } from "./user"
 
 @Entity({ name: "members" })
 export class Member {

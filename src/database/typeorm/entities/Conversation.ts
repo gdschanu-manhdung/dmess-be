@@ -1,35 +1,35 @@
-import { ConversationType } from 'src/utils/constants';
+import { ConversationType } from "src/utils/constants"
 import {
     Entity,
     Column,
     PrimaryGeneratedColumn,
     ManyToOne,
     OneToMany,
-} from 'typeorm';
-import { Member } from './Member';
-import { User } from './User';
+} from "typeorm"
+import { Member } from "./member"
+import { User } from "./user"
 
-@Entity({ name: 'conversations' })
+@Entity({ name: "conversations" })
 export class Conversation {
     @PrimaryGeneratedColumn()
-    id: number;
+    id: number
 
     @Column()
-    name: string;
+    name: string
 
     @Column({
-        type: 'enum',
+        type: "enum",
         enum: ConversationType,
         default: ConversationType.PRIVATE,
     })
-    type: ConversationType;
+    type: ConversationType
 
     @ManyToOne(() => User, (user) => user.conversations)
-    host: User;
+    host: User
 
     @OneToMany(() => Member, (member) => member.conversation)
-    members: Member[];
+    members: Member[]
 
     @Column()
-    theme: string;
+    theme: string
 }

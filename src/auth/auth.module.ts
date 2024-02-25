@@ -10,6 +10,7 @@ import {
     RefreshJwtStrategy,
 } from "./utils/strategy.auth"
 import { Services } from "src/utils/constants"
+import { UsersModule } from "src/users/users.module"
 
 @Module({
     imports: [
@@ -22,6 +23,7 @@ import { Services } from "src/utils/constants"
             }),
             inject: [ConfigService],
         }),
+        UsersModule,
     ],
     controllers: [AuthController],
     providers: [

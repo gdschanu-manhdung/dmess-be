@@ -5,8 +5,8 @@ import {
     ManyToOne,
     OneToMany,
 } from "typeorm"
-import { Member } from "./Member"
-import { Reaction } from "./Reaction"
+import { Member } from "./member"
+import { Reaction } from "./reaction"
 
 @Entity({ name: "messages" })
 export class Message {

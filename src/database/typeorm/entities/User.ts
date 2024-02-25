@@ -1,8 +1,8 @@
 import { Gender } from "src/utils/constants"
 import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from "typeorm"
-import { Conversation } from "./Conversation"
-import { Friend } from "./Friend"
-import { Member } from "./Member"
+import { Conversation } from "./conversation"
+import { Friend } from "./friend"
+import { Member } from "./member"
 
 @Entity({ name: "users" })
 export class User {
