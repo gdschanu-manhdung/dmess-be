@@ -39,3 +39,8 @@ export type ConversationDetails = {
     memberIds?: number[]
     theme?: string
 }
+
+export type MemberForConversation = {
+    memberIds: number[]
+    conversationId: number
+}

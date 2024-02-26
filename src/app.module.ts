@@ -6,6 +6,7 @@ import { UsersModule } from "./users/users.module"
 import { DatabaseModule } from "./database/database.module"
 import { JwtModule } from "@nestjs/jwt"
 import { ConversationsModule } from "./conversations/conversations.module"
+import { MembersModule } from "./members/members.module"
 
 @Module({
     imports: [
@@ -13,6 +14,7 @@ import { ConversationsModule } from "./conversations/conversations.module"
         AuthModule,
         UsersModule,
         ConversationsModule,
+        MembersModule,
         DatabaseModule,
         TypeOrmModule.forRoot({
             type: "postgres",

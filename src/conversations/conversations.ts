@@ -5,4 +5,5 @@ export interface IConversationsService {
     createGroupConversation(
         createConversationDto: CreateConversationDto,
     ): Promise<Conversation>
+    findConversationById(conversationId: number): Promise<Conversation>
 }

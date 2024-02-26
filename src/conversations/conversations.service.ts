@@ -41,4 +41,12 @@ export class ConversationsService implements IConversationsService {
             console.error(error)
         }
     }
+
+    async findConversationById(conversationId: number) {
+        const conversation = await this.conversationRepository.findOne({
+            where: { id: conversationId },
+        })
+
+        return conversation
+    }
 }
