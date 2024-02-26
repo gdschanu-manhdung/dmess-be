@@ -8,7 +8,7 @@ import { IUsersService } from "./users"
 import { InjectRepository } from "@nestjs/typeorm"
 import { Repository, Like } from "typeorm"
 import { Injectable, HttpException, HttpStatus } from "@nestjs/common"
-import { hashPassword } from "src/utils/helper"
+import { filterFindUserQuery, hashPassword } from "src/utils/helper"
 
 @Injectable()
 export class UsersService implements IUsersService {
@@ -47,14 +47,11 @@ export class UsersService implements IUsersService {
         return user
     }
 
-    async findUsers(findUserQuery: FindUserQuery): Promise<User[]> {
+    async findUsers(findUserQuery: FindUserQuery) {
         const users = await this.userRepository.find({
-            where: [
-                { email: Like(`%${findUserQuery.email}%`) },
-                { name: Like(`%${findUserQuery.name}%`) },
-                { phone: Like(`%${findUserQuery.phone}%`) },
-            ],
+            where: filterFindUserQuery(findUserQuery),
         })
+        console.log(users)
         return users
     }
 
