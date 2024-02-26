@@ -1,10 +1,18 @@
-import { Controller, Inject, Post, Body } from "@nestjs/common"
+import {
+    Controller,
+    Inject,
+    Post,
+    Get,
+    Req,
+    Res,
+    HttpStatus,
+} from "@nestjs/common"
 import { UseGuards } from "@nestjs/common/decorators"
 import { JwtAuthGuard } from "src/auth/utils/guard.auth"
 import { Routes, Services } from "src/utils/constants"
 import { Request, Response } from "express"
 import { ConversationsService } from "./conversations.service"
-import { CreateConversationDto } from "./dto/CreateConversation.dto"
+import { ConversationDetails, FindConversationQuery } from "src/utils/types"
 
 @Controller(Routes.CONVERSATIONS)
 export class ConversationsController {
@@ -15,9 +23,25 @@ export class ConversationsController {
 
     @UseGuards(JwtAuthGuard)
     @Post("createGroupConversation")
-    async createGroupConversation(
-        @Body() createConversationDto: CreateConversationDto,
-    ) {
-        this.conversationsService.createGroupConversation(createConversationDto)
+    async createGroupConversation(@Req() req: Request, @Res() res: Response) {
+        const conversationDetails = req.body as ConversationDetails
+
+        return res.status(HttpStatus.OK).json({
+            conversation:
+                this.conversationsService.createGroupConversation(
+                    conversationDetails,
+                ),
+        })
+    }
+
+    @UseGuards(JwtAuthGuard)
+    @Get("getConversationById")
+    async getConversationById(@Req() req: Request, @Res() res: Response) {
+        const query = req.query as FindConversationQuery
+
+        return res.status(HttpStatus.OK).json({
+            conversation:
+                await this.conversationsService.findConversationById(query),
+        })
     }
 }

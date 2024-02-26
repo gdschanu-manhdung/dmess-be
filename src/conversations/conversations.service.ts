@@ -1,6 +1,6 @@
 import { InjectRepository } from "@nestjs/typeorm"
 import { Conversation } from "src/database/typeorm/entities/Conversation"
-import { ConversationDetails } from "src/utils/types"
+import { ConversationDetails, FindConversationQuery } from "src/utils/types"
 import { Repository } from "typeorm"
 import { IConversationsService } from "./conversations"
 import { Inject } from "@nestjs/common"
@@ -42,10 +42,12 @@ export class ConversationsService implements IConversationsService {
         }
     }
 
-    async findConversationById(conversationId: number) {
+    async findConversationById(findConversationQuery: FindConversationQuery) {
         const conversation = await this.conversationRepository.findOne({
-            where: { id: conversationId },
+            where: { id: findConversationQuery.conversationId },
         })
+
+        console.log(findConversationQuery)
 
         return conversation
     }

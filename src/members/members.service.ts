@@ -4,7 +4,7 @@ import { ConversationsService } from "src/conversations/conversations.service"
 import { Member } from "src/database/typeorm/entities/member"
 import { UsersService } from "src/users/users.service"
 import { Services } from "src/utils/constants"
-import { MemberForConversation } from "src/utils/types"
+import { FindConversationQuery, MemberForConversation } from "src/utils/types"
 import { Repository } from "typeorm"
 import { IMembersService } from "./members"
 
@@ -19,9 +19,12 @@ export class MembersService implements IMembersService {
 
     async createMembers(memberForConversation: MemberForConversation) {
         try {
+            const conversationDetails = {
+                conversationId: memberForConversation.conversationId,
+            } as FindConversationQuery
             const conversation =
                 await this.conversationsService.findConversationById(
-                    memberForConversation.conversationId,
+                    conversationDetails,
                 )
             const newMembersPromises = memberForConversation.memberIds.map(
                 async (memberId) => {

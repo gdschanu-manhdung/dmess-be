@@ -33,11 +33,16 @@ export type JwtPayload = {
 }
 
 export type ConversationDetails = {
+    id?: number
     name?: string
     type?: ConversationType
     hostId?: number
     memberIds?: number[]
     theme?: string
+}
+
+export type FindConversationQuery = {
+    conversationId?: number
 }
 
 export type MemberForConversation = {
