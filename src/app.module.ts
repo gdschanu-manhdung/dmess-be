@@ -5,12 +5,14 @@ import { AuthModule } from "./auth/auth.module"
 import { UsersModule } from "./users/users.module"
 import { DatabaseModule } from "./database/database.module"
 import { JwtModule } from "@nestjs/jwt"
+import { ConversationsModule } from "./conversations/conversations.module"
 
 @Module({
     imports: [
         ConfigModule.forRoot({ isGlobal: true, envFilePath: ".env" }),
         AuthModule,
         UsersModule,
+        ConversationsModule,
         DatabaseModule,
         TypeOrmModule.forRoot({
             type: "postgres",

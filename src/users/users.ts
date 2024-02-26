@@ -9,4 +9,5 @@ export interface IUsersService {
     createUser(userDetails: UserDetails): Promise<User>
     findUserByEmail(findUserQueryByEmail: FindUserQueryByEmail): Promise<User>
     findUsers(findUserQuery: FindUserQuery): Promise<User[]>
+    findUserById(userId: number): Promise<User>
 }

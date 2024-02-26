@@ -57,4 +57,12 @@ export class UsersService implements IUsersService {
         })
         return users
     }
+
+    async findUserById(userId: number) {
+        const user = await this.userRepository.findOne({
+            where: { id: userId },
+        })
+
+        return user
+    }
 }

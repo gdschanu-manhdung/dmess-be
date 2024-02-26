@@ -1,4 +1,4 @@
-import { Gender } from "./constants"
+import { ConversationType, Gender } from "./constants"
 
 export type ValidateUserDetails = {
     id?: number
@@ -30,4 +30,12 @@ export type FindUserQuery = {
 export type JwtPayload = {
     email: string
     sub: number
+}
+
+export type ConversationDetails = {
+    name?: string
+    type?: ConversationType
+    hostId?: number
+    memberIds?: number[]
+    theme?: string
 }

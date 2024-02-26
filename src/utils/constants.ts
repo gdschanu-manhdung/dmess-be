@@ -24,9 +24,11 @@ export enum ReactionType {
 export enum Services {
     USERS = "USERS_SERVICE",
     AUTH = "AUTH_SERVICE",
+    CONVERSATIONS = "CONVERSATIONS_SERVICE",
 }
 
 export enum Routes {
     AUTH = "auth",
     USERS = "users",
+    CONVERSATIONS = "conversations",
 }
