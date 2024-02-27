@@ -67,8 +67,34 @@ export class MembersService implements IMembersService {
                 user,
                 messages: [],
             }
-            const newMember = await this.memberRepository.create(params)
+            const newMember = this.memberRepository.create(params)
             return await this.memberRepository.save(newMember)
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    async removeMember(memberToConversation: MemberToConversation) {
+        try {
+            const user = await this.usersService.findUserById(
+                memberToConversation.memberId,
+            )
+            const conversationDetails = {
+                conversationId: memberToConversation.conversationId,
+            } as FindConversationQuery
+            const conversation =
+                await this.conversationsService.findConversationById(
+                    conversationDetails,
+                )
+
+            const member = await this.memberRepository.findOne({
+                where: {
+                    user,
+                    conversation,
+                },
+            })
+
+            member && (await this.memberRepository.remove(member))
         } catch (error) {
             console.error(error)
         }
