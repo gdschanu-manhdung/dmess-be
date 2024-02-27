@@ -4,7 +4,11 @@ import { ConversationsService } from "src/conversations/conversations.service"
 import { Member } from "src/database/typeorm/entities/member"
 import { UsersService } from "src/users/users.service"
 import { Services } from "src/utils/constants"
-import { FindConversationQuery, MemberForConversation } from "src/utils/types"
+import {
+    FindConversationQuery,
+    MembersForConversation,
+    MemberToConversation,
+} from "src/utils/types"
 import { Repository } from "typeorm"
 import { IMembersService } from "./members"
 
@@ -17,16 +21,16 @@ export class MembersService implements IMembersService {
         private readonly memberRepository: Repository<Member>,
     ) {}
 
-    async createMembers(memberForConversation: MemberForConversation) {
+    async createMembers(membersForConversation: MembersForConversation) {
         try {
             const conversationDetails = {
-                conversationId: memberForConversation.conversationId,
+                conversationId: membersForConversation.conversationId,
             } as FindConversationQuery
             const conversation =
                 await this.conversationsService.findConversationById(
                     conversationDetails,
                 )
-            const newMembersPromises = memberForConversation.memberIds.map(
+            const newMembersPromises = membersForConversation.memberIds.map(
                 async (memberId) => {
                     const user = await this.usersService.findUserById(memberId)
                     const params = {
@@ -40,6 +44,31 @@ export class MembersService implements IMembersService {
             )
             const newMembers = await Promise.all(newMembersPromises)
             return await this.memberRepository.save(newMembers)
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    async addMember(memberToConversation: MemberToConversation) {
+        try {
+            const conversationDetails = {
+                conversationId: memberToConversation.conversationId,
+            } as FindConversationQuery
+            const conversation =
+                await this.conversationsService.findConversationById(
+                    conversationDetails,
+                )
+            const user = await this.usersService.findUserById(
+                memberToConversation.memberId,
+            )
+            const params = {
+                nickname: user.name,
+                conversation,
+                user,
+                messages: [],
+            }
+            const newMember = await this.memberRepository.create(params)
+            return await this.memberRepository.save(newMember)
         } catch (error) {
             console.error(error)
         }

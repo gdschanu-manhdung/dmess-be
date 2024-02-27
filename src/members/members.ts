@@ -1,8 +1,9 @@
 import { Member } from "src/database/typeorm/entities/member"
-import { MemberForConversation } from "src/utils/types"
+import { MembersForConversation, MemberToConversation } from "src/utils/types"
 
 export interface IMembersService {
     createMembers(
-        memberForConversation: MemberForConversation,
+        membersForConversation: MembersForConversation,
     ): Promise<Member[]>
+    addMember(memberToConversation: MemberToConversation): Promise<Member>
 }

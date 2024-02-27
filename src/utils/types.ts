@@ -45,7 +45,12 @@ export type FindConversationQuery = {
     conversationId?: number
 }
 
-export type MemberForConversation = {
+export type MembersForConversation = {
     memberIds: number[]
+    conversationId: number
+}
+
+export type MemberToConversation = {
+    memberId: number
     conversationId: number
 }
