@@ -44,4 +44,17 @@ export class ConversationsController {
                 await this.conversationsService.findConversationById(query),
         })
     }
+
+    @UseGuards(JwtAuthGuard)
+    @Post("createPrivateConversation")
+    async createPrivateConversation(@Req() req: Request, @Res() res: Response) {
+        const conversationDetails = req.body as ConversationDetails
+
+        return res.status(HttpStatus.OK).json({
+            conversation:
+                this.conversationsService.createPrivateConversation(
+                    conversationDetails,
+                ),
+        })
+    }
 }

@@ -51,7 +51,6 @@ export class UsersService implements IUsersService {
         const users = await this.userRepository.find({
             where: filterFindUserQuery(findUserQuery),
         })
-        console.log(users)
         return users
     }
 

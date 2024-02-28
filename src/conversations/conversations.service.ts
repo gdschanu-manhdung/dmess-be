@@ -47,8 +47,24 @@ export class ConversationsService implements IConversationsService {
             where: { id: findConversationQuery.conversationId },
         })
 
-        console.log(findConversationQuery)
-
         return conversation
+    }
+
+    async createPrivateConversation(conversationDetails: ConversationDetails) {
+        try {
+            const host = await this.usersService.findUserById(0)
+
+            const params = {
+                ...conversationDetails,
+                name: "",
+                type: ConversationType.PRIVATE,
+                theme: "",
+                host,
+            }
+            const newConversation = this.conversationRepository.create(params)
+            return await this.conversationRepository.save(newConversation)
+        } catch (error) {
+            console.error(error)
+        }
     }
 }
