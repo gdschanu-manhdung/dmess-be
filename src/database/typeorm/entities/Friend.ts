@@ -1,3 +1,4 @@
+import { FriendsStatus } from "src/utils/constants"
 import { Column, Entity, PrimaryGeneratedColumn, ManyToOne } from "typeorm"
 import { User } from "./user"
 
@@ -5,6 +6,9 @@ import { User } from "./user"
 export class Friend {
     @PrimaryGeneratedColumn()
     id: number
+
+    @Column({ type: "enum", enum: FriendsStatus, default: FriendsStatus.NONE })
+    status: FriendsStatus
 
     @ManyToOne(() => User, (user) => user.fromFriends)
     fromUser: User

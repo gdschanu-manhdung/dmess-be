@@ -1,4 +1,4 @@
-import { ConversationType, Gender } from "./constants"
+import { ConversationType, FriendsStatus, Gender } from "./constants"
 
 export type ValidateUserDetails = {
     id?: number
@@ -53,4 +53,16 @@ export type MembersForConversation = {
 export type MemberToConversation = {
     memberId: number
     conversationId: number
+}
+
+export type FriendsDetails = {
+    fromUserId?: number
+    toUserId?: number
+    status?: FriendsStatus
+}
+
+export type FriendsRequestQuery = {
+    fromUserId?: number
+    toUserId?: number
+    status: FriendsStatus
 }

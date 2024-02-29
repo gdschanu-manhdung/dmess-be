@@ -1,6 +1,6 @@
 import * as bcrypt from "bcrypt"
 import { Like } from "typeorm"
-import { FindUserQuery } from "./types"
+import { FindUserQuery, FriendsRequestQuery } from "./types"
 
 export async function hashPassword(password: string) {
     const salt = await bcrypt.genSalt()

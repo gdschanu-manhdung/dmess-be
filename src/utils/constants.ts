@@ -21,11 +21,19 @@ export enum ReactionType {
     OTHER = "OTHER",
 }
 
+export enum FriendsStatus {
+    NONE = "NONE",
+    SENT = "SENT",
+    FRIENDS = "FRIENDS",
+    OTHER = "OTHER",
+}
+
 export enum Services {
     USERS = "USERS_SERVICE",
     AUTH = "AUTH_SERVICE",
     CONVERSATIONS = "CONVERSATIONS_SERVICE",
     MEMBERS = "MEMBERS_SERVICE",
+    FRIENDS = "FRIENDS_SERVICE",
 }
 
 export enum Routes {
@@ -33,4 +41,5 @@ export enum Routes {
     USERS = "users",
     CONVERSATIONS = "conversations",
     MEMBERS = "members",
+    FRIENDS = "friends",
 }
