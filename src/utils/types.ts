@@ -64,5 +64,5 @@ export type FriendsDetails = {
 export type FriendsRequestQuery = {
     fromUserId?: number
     toUserId?: number
-    status: FriendsStatus
+    status?: FriendsStatus
 }

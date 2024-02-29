@@ -6,5 +6,5 @@ export interface IFriendsService {
     sendRequest(friendsRequestDto: FriendsRequestDto): Promise<Friend>
     rejectRequest(friendsDetails: FriendsDetails): Promise<Friend>
     acceptRequest(friendsDetails: FriendsDetails): Promise<Friend>
-    findRequest(friendsDetails: FriendsDetails): Promise<Friend>
+    findRequests(friendsDetails: FriendsDetails): Promise<Friend[]>
 }

@@ -1,6 +1,17 @@
-import { Controller, Inject, UseGuards, Body, Post } from "@nestjs/common"
+import {
+    Controller,
+    Inject,
+    UseGuards,
+    Body,
+    Post,
+    Req,
+    Res,
+    HttpStatus,
+} from "@nestjs/common"
+import { Request, Response } from "express"
 import { JwtAuthGuard } from "src/auth/utils/guard.auth"
 import { Routes, Services } from "src/utils/constants"
+import { FriendsRequestQuery } from "src/utils/types"
 import { FriendsRequestDto } from "./dto/friendsRequest.dto"
 import { FriendsService } from "./friends.service"
 
@@ -13,6 +24,17 @@ export class FriendsController {
     @UseGuards(JwtAuthGuard)
     @Post("sendRequest")
     async sendRequest(@Body() friendsRequestDto: FriendsRequestDto) {
-        this.friendsService.sendRequest(friendsRequestDto)
+        await this.friendsService.sendRequest(friendsRequestDto)
+    }
+
+    @UseGuards(JwtAuthGuard)
+    @Post("findRequests")
+    async findRequests(@Req() req: Request, @Res() res: Response) {
+        const friendsRequestQuery = req.body as FriendsRequestQuery
+
+        return res.status(HttpStatus.OK).json({
+            requests:
+                await this.friendsService.findRequests(friendsRequestQuery),
+        })
     }
 }
