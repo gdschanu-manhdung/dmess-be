@@ -44,4 +44,10 @@ export class FriendsController {
     async rejectRequest(@Body() friendsDetails: FriendsDetails) {
         await this.friendsService.rejectRequest(friendsDetails)
     }
+
+    @UseGuards(JwtAuthGuard)
+    @Post("acceptRequest")
+    async acceptRequest(@Body() friendsDetails: FriendsDetails) {
+        await this.friendsService.acceptRequest(friendsDetails)
+    }
 }

@@ -51,8 +51,20 @@ export class FriendsService implements IFriendsService {
             console.error(error)
         }
     }
-    acceptRequest(friendsDetails: FriendsDetails): Promise<Friend> {
-        throw new Error("Method not implemented.")
+    async acceptRequest(friendsDetails: FriendsDetails) {
+        const requestId = friendsDetails.id
+
+        try {
+            const request = await this.friendRepository.findOne({
+                where: { id: requestId },
+            })
+
+            request.status = FriendsStatus.FRIENDS
+
+            return await this.friendRepository.save(request)
+        } catch (error) {
+            console.error(error)
+        }
     }
     async findRequests(friendsRequestQuery: FriendsRequestQuery) {
         let where = {}
