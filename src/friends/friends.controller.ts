@@ -7,11 +7,12 @@ import {
     Req,
     Res,
     HttpStatus,
+    Delete,
 } from "@nestjs/common"
 import { Request, Response } from "express"
 import { JwtAuthGuard } from "src/auth/utils/guard.auth"
 import { Routes, Services } from "src/utils/constants"
-import { FriendsRequestQuery } from "src/utils/types"
+import { FriendsDetails, FriendsRequestQuery } from "src/utils/types"
 import { FriendsRequestDto } from "./dto/friendsRequest.dto"
 import { FriendsService } from "./friends.service"
 
@@ -36,5 +37,11 @@ export class FriendsController {
             requests:
                 await this.friendsService.findRequests(friendsRequestQuery),
         })
+    }
+
+    @UseGuards(JwtAuthGuard)
+    @Delete("rejectRequest")
+    async rejectRequest(@Body() friendsDetails: FriendsDetails) {
+        await this.friendsService.rejectRequest(friendsDetails)
     }
 }

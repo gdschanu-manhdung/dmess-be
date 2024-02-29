@@ -56,6 +56,7 @@ export type MemberToConversation = {
 }
 
 export type FriendsDetails = {
+    id?: number
     fromUserId?: number
     toUserId?: number
     status?: FriendsStatus
