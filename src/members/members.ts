@@ -7,4 +7,5 @@ export interface IMembersService {
     ): Promise<Member[]>
     addMember(memberToConversation: MemberToConversation): Promise<Member>
     removeMember(memberToConversation: MemberToConversation): Promise<void>
+    findMemberById(memberId: number): Promise<Member>
 }

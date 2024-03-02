@@ -7,7 +7,6 @@ import { FriendsRequestDto } from "./dto/friendsRequest.dto"
 import { IFriendsService } from "./friends"
 import { Inject } from "@nestjs/common"
 import { UsersService } from "src/users/users.service"
-import { filterFindUserQuery } from "src/utils/helper"
 
 export class FriendsService implements IFriendsService {
     constructor(

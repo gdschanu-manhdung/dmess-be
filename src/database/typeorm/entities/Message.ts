@@ -5,6 +5,7 @@ import {
     ManyToOne,
     OneToMany,
 } from "typeorm"
+import { Conversation } from "./conversation"
 import { Member } from "./member"
 import { Reaction } from "./reaction"
 
@@ -19,8 +20,11 @@ export class Message {
     @Column()
     content: string
 
-    @Column({ type: "timestamp" })
-    time: Date
+    @Column({ type: "date" })
+    time: string
+
+    @ManyToOne(() => Conversation, (conversation) => conversation.messages)
+    conversation: Conversation
 
     @OneToMany(() => Reaction, (reaction) => reaction.message)
     reactions: Reaction[]

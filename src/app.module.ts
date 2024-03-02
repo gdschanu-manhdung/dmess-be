@@ -8,6 +8,7 @@ import { JwtModule } from "@nestjs/jwt"
 import { ConversationsModule } from "./conversations/conversations.module"
 import { MembersModule } from "./members/members.module"
 import { FriendsModule } from "./friends/friends.module"
+import { MessagesModule } from "./messages/messages.module"
 
 @Module({
     imports: [
@@ -18,6 +19,7 @@ import { FriendsModule } from "./friends/friends.module"
         MembersModule,
         FriendsModule,
         DatabaseModule,
+        MessagesModule,
         TypeOrmModule.forRoot({
             type: "postgres",
             url: process.env.DATABASE_URL,

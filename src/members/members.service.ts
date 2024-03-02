@@ -99,4 +99,16 @@ export class MembersService implements IMembersService {
             console.error(error)
         }
     }
+
+    async findMemberById(memberId: number): Promise<Member> {
+        try {
+            const member = await this.memberRepository.findOne({
+                where: { id: memberId },
+            })
+
+            return member
+        } catch (error) {
+            console.error(error)
+        }
+    }
 }

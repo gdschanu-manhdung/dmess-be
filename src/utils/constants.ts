@@ -34,6 +34,7 @@ export enum Services {
     CONVERSATIONS = "CONVERSATIONS_SERVICE",
     MEMBERS = "MEMBERS_SERVICE",
     FRIENDS = "FRIENDS_SERVICE",
+    MESSAGES = "MESSAGES_SERVICE",
 }
 
 export enum Routes {
@@ -42,4 +43,5 @@ export enum Routes {
     CONVERSATIONS = "conversations",
     MEMBERS = "members",
     FRIENDS = "friends",
+    MESSAGES = "messages",
 }
