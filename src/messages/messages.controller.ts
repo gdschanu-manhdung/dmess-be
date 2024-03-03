@@ -18,7 +18,7 @@ export class MessagesController {
         const sendMessageDto = req.body as SendMessageDto
 
         return res.status(HttpStatus.OK).json({
-            message: this.messagesService.createMessage(sendMessageDto),
+            message: await this.messagesService.createMessage(sendMessageDto),
         })
     }
 }

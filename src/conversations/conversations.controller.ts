@@ -52,7 +52,7 @@ export class ConversationsController {
 
         return res.status(HttpStatus.OK).json({
             conversation:
-                this.conversationsService.createPrivateConversation(
+                await this.conversationsService.createPrivateConversation(
                     conversationDetails,
                 ),
         })
