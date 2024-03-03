@@ -6,9 +6,9 @@ import { Repository } from 'typeorm'
 import { Services } from 'src/utils/constants'
 import { MessagesService } from 'src/messages/messages.service'
 import { SendReactionDto } from './dto/sendReaction.dto'
-import { send } from 'process'
 import { ReactionDetails } from 'src/utils/types'
 import { MembersService } from 'src/members/members.service'
+import { RemoveReactionDto } from './dto/RemoveReaction.dto'
 
 export class ReactionsService implements IReactionsService {
     constructor(
@@ -46,6 +46,26 @@ export class ReactionsService implements IReactionsService {
             }
             reactionSaved.reactionType = sendReactionDto.reactionType
             return await this.reactionRepository.save(reactionSaved)
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    async removeReaction(removeReactionDto: RemoveReactionDto) {
+        try {
+            const message = await this.messagesService.findMessageId(
+                removeReactionDto.messageId,
+            )
+            const member = await this.membersService.findMemberById(
+                removeReactionDto.memberId,
+            )
+            const reactionSaved = await this.reactionRepository.findOne({
+                where: {
+                    message,
+                    member,
+                },
+            })
+            await this.reactionRepository.remove(reactionSaved)
         } catch (error) {
             console.error(error)
         }

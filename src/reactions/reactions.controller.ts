@@ -1,5 +1,6 @@
 import {
     Controller,
+    Delete,
     HttpStatus,
     Post,
     Req,
@@ -12,6 +13,7 @@ import { Routes, Services } from 'src/utils/constants'
 import { ReactionsService } from './reactions.service'
 import { Request, Response } from 'express'
 import { SendReactionDto } from './dto/sendReaction.dto'
+import { RemoveReactionDto } from './dto/RemoveReaction.dto'
 
 @Controller(Routes.REACTIONS)
 export class ReactionsController {
@@ -27,5 +29,13 @@ export class ReactionsController {
         return res.status(HttpStatus.OK).json({
             reaction: await this.reactionsService.sendReaction(sendReactionDto),
         })
+    }
+
+    @UseGuards(JwtAuthGuard)
+    @Delete('removeReaction')
+    async removeReaction(@Req() req: Request) {
+        const removeReactionDto = req.body as RemoveReactionDto
+
+        await this.reactionsService.removeReaction(removeReactionDto)
     }
 }
