@@ -36,4 +36,15 @@ export class UsersController {
             users: await this.usersService.findUsers(query),
         })
     }
+
+    @UseGuards(JwtAuthGuard)
+    @Get('findConversations')
+    async findConversations(@Req() req: Request, @Res() res: Response) {
+        const query = req.query
+        const userId = Number(query.userId)
+
+        return res.status(HttpStatus.OK).json({
+            conversations: await this.usersService.findConversations(userId),
+        })
+    }
 }

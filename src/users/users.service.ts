@@ -6,15 +6,26 @@ import {
 } from 'src/utils/types'
 import { IUsersService } from './users'
 import { InjectRepository } from '@nestjs/typeorm'
-import { Repository, Like } from 'typeorm'
-import { Injectable, HttpException, HttpStatus } from '@nestjs/common'
+import { Repository } from 'typeorm'
+import {
+    Injectable,
+    HttpException,
+    HttpStatus,
+    Inject,
+    forwardRef,
+} from '@nestjs/common'
 import { filterFindUserQuery, hashPassword } from 'src/utils/helper'
+import { MembersService } from 'src/members/members.service'
+import { Services } from 'src/utils/constants'
+import { Member } from 'src/database/typeorm/entities/member'
 
 @Injectable()
 export class UsersService implements IUsersService {
     constructor(
         @InjectRepository(User)
         private readonly userRepository: Repository<User>,
+        @InjectRepository(Member)
+        private readonly memberRepository: Repository<Member>,
     ) {}
 
     async createUser(userDetails: UserDetails) {
@@ -60,5 +71,24 @@ export class UsersService implements IUsersService {
         })
 
         return user
+    }
+
+    async findConversations(userId: number) {
+        const user = await this.userRepository.findOne({
+            where: { id: userId },
+        })
+        const members = await this.memberRepository.find({
+            where: { user },
+        })
+        const conversations = await Promise.all(
+            members.map(async (member) => {
+                const memberDetails = await this.memberRepository.findOne({
+                    where: { id: member.id },
+                    relations: ['conversation'],
+                })
+                return memberDetails.conversation
+            }),
+        )
+        return conversations
     }
 }

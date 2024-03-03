@@ -1,3 +1,4 @@
+import { Conversation } from 'src/database/typeorm/entities/conversation'
 import { User } from 'src/database/typeorm/entities/User'
 import {
     FindUserQuery,
@@ -10,4 +11,5 @@ export interface IUsersService {
     findUserByEmail(findUserQueryByEmail: FindUserQueryByEmail): Promise<User>
     findUsers(findUserQuery: FindUserQuery): Promise<User[]>
     findUserById(userId: number): Promise<User>
+    findConversations(userId: number): Promise<Conversation[]>
 }

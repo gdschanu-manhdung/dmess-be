@@ -1,4 +1,4 @@
-import { Inject } from '@nestjs/common'
+import { forwardRef, Inject } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { ConversationsService } from 'src/conversations/conversations.service'
 import { Member } from 'src/database/typeorm/entities/member'
@@ -16,7 +16,8 @@ export class MembersService implements IMembersService {
     constructor(
         @Inject(Services.CONVERSATIONS)
         private readonly conversationsService: ConversationsService,
-        @Inject(Services.USERS) private usersService: UsersService,
+        @Inject(forwardRef(() => Services.USERS))
+        private usersService: UsersService,
         @InjectRepository(Member)
         private readonly memberRepository: Repository<Member>,
     ) {}
