@@ -1,18 +1,19 @@
-import { Module } from "@nestjs/common"
-import { TypeOrmModule } from "@nestjs/typeorm"
-import { ConfigModule } from "@nestjs/config"
-import { AuthModule } from "./auth/auth.module"
-import { UsersModule } from "./users/users.module"
-import { DatabaseModule } from "./database/database.module"
-import { JwtModule } from "@nestjs/jwt"
-import { ConversationsModule } from "./conversations/conversations.module"
-import { MembersModule } from "./members/members.module"
-import { FriendsModule } from "./friends/friends.module"
-import { MessagesModule } from "./messages/messages.module"
+import { Module } from '@nestjs/common'
+import { TypeOrmModule } from '@nestjs/typeorm'
+import { ConfigModule } from '@nestjs/config'
+import { AuthModule } from './auth/auth.module'
+import { UsersModule } from './users/users.module'
+import { DatabaseModule } from './database/database.module'
+import { JwtModule } from '@nestjs/jwt'
+import { ConversationsModule } from './conversations/conversations.module'
+import { MembersModule } from './members/members.module'
+import { FriendsModule } from './friends/friends.module'
+import { MessagesModule } from './messages/messages.module'
+import { ReactionsModule } from './reactions/reactions.module'
 
 @Module({
     imports: [
-        ConfigModule.forRoot({ isGlobal: true, envFilePath: ".env" }),
+        ConfigModule.forRoot({ isGlobal: true, envFilePath: '.env' }),
         AuthModule,
         UsersModule,
         ConversationsModule,
@@ -20,11 +21,12 @@ import { MessagesModule } from "./messages/messages.module"
         FriendsModule,
         DatabaseModule,
         MessagesModule,
+        ReactionsModule,
         TypeOrmModule.forRoot({
-            type: "postgres",
+            type: 'postgres',
             url: process.env.DATABASE_URL,
             autoLoadEntities: true,
-            entities: ["dist/database/typeorm/entities/*.js"],
+            entities: ['dist/database/typeorm/entities/*.js'],
             synchronize: true,
             ssl: {
                 rejectUnauthorized: false,
@@ -33,7 +35,7 @@ import { MessagesModule } from "./messages/messages.module"
         JwtModule.register({
             secret: process.env.JWT_SECRET,
             signOptions: {
-                expiresIn: "2d",
+                expiresIn: '2d',
             },
         }),
     ],

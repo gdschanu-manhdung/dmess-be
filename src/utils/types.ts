@@ -88,4 +88,6 @@ export type MessageDetails = {
 export type ReactionDetails = {
     id?: number
     reactionType?: ReactionType
+    messageId?: number
+    memberId?: number
 }

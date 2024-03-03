@@ -4,12 +4,13 @@ import {
     PrimaryGeneratedColumn,
     ManyToOne,
     OneToMany,
-} from "typeorm"
-import { Conversation } from "./conversation"
-import { Message } from "./message"
-import { User } from "./user"
+} from 'typeorm'
+import { Conversation } from './conversation'
+import { Message } from './message'
+import { Reaction } from './reaction'
+import { User } from './user'
 
-@Entity({ name: "members" })
+@Entity({ name: 'members' })
 export class Member {
     @PrimaryGeneratedColumn()
     id: number
@@ -25,4 +26,7 @@ export class Member {
 
     @OneToMany(() => Message, (message) => message.member)
     messages: Message[]
+
+    @OneToMany(() => Reaction, (reaction) => reaction.member)
+    reactions: Reaction[]
 }

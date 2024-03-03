@@ -1,8 +1,9 @@
-import { ReactionType } from "src/utils/constants"
-import { Column, Entity, PrimaryGeneratedColumn, ManyToOne } from "typeorm"
-import { Message } from "./message"
+import { ReactionType } from 'src/utils/constants'
+import { Column, Entity, PrimaryGeneratedColumn, ManyToOne } from 'typeorm'
+import { Member } from './member'
+import { Message } from './message'
 
-@Entity({ name: "reactions" })
+@Entity({ name: 'reactions' })
 export class Reaction {
     @PrimaryGeneratedColumn()
     id: number
@@ -10,6 +11,9 @@ export class Reaction {
     @ManyToOne(() => Message, (message) => message.reactions)
     message: Message
 
-    @Column({ type: "enum", enum: ReactionType, default: ReactionType.OTHER })
+    @Column({ type: 'enum', enum: ReactionType, default: ReactionType.OTHER })
     reactionType: ReactionType
+
+    @ManyToOne(() => Member, (member) => member.reactions)
+    member: Member
 }

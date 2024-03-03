@@ -1,6 +1,7 @@
 import { ReactionType } from 'src/utils/constants'
 
-export class sendReactionDto {
+export class SendReactionDto {
     reactionType: ReactionType
     messageId: number
+    memberId: number
 }

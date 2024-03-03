@@ -43,4 +43,16 @@ export class MessagesService implements IMessagesService {
             console.error(error)
         }
     }
+
+    async findMessageId(messageId: number) {
+        try {
+            const message = this.messageRepository.findOne({
+                where: { id: messageId },
+            })
+
+            return message
+        } catch (error) {
+            console.error(error)
+        }
+    }
 }
