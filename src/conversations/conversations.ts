@@ -1,7 +1,7 @@
-import { Conversation } from "src/database/typeorm/entities/Conversation"
-import { FindConversationQuery } from "src/utils/types"
-import { CreateConversationDto } from "./dto/CreateConversation.dto"
-import { CreatePrivateConversationDto } from "./dto/CreatePrivateConversation.dto"
+import { Conversation } from 'src/database/typeorm/entities/Conversation'
+import { FindConversationQuery } from 'src/utils/types'
+import { CreateConversationDto } from './dto/CreateConversation.dto'
+import { CreatePrivateConversationDto } from './dto/CreatePrivateConversation.dto'
 
 export interface IConversationsService {
     createGroupConversation(

@@ -1,11 +1,11 @@
-import { InjectRepository } from "@nestjs/typeorm"
-import { Conversation } from "src/database/typeorm/entities/Conversation"
-import { ConversationDetails, FindConversationQuery } from "src/utils/types"
-import { Repository } from "typeorm"
-import { IConversationsService } from "./conversations"
-import { Inject } from "@nestjs/common"
-import { ConversationType, Services } from "src/utils/constants"
-import { UsersService } from "src/users/users.service"
+import { InjectRepository } from '@nestjs/typeorm'
+import { Conversation } from 'src/database/typeorm/entities/Conversation'
+import { ConversationDetails, FindConversationQuery } from 'src/utils/types'
+import { Repository } from 'typeorm'
+import { IConversationsService } from './conversations'
+import { Inject } from '@nestjs/common'
+import { ConversationType, Services } from 'src/utils/constants'
+import { UsersService } from 'src/users/users.service'
 
 export class ConversationsService implements IConversationsService {
     constructor(
@@ -22,7 +22,7 @@ export class ConversationsService implements IConversationsService {
                     return user.name
                 }),
             )
-            const name = userNames.join(", ")
+            const name = userNames.join(', ')
 
             const host = await this.usersService.findUserById(
                 conversationDetails.hostId,
@@ -32,7 +32,7 @@ export class ConversationsService implements IConversationsService {
                 ...conversationDetails,
                 name,
                 type: ConversationType.GROUP,
-                theme: "",
+                theme: '',
                 host,
             }
             const newConversation = this.conversationRepository.create(params)
@@ -56,9 +56,9 @@ export class ConversationsService implements IConversationsService {
 
             const params = {
                 ...conversationDetails,
-                name: "",
+                name: '',
                 type: ConversationType.PRIVATE,
-                theme: "",
+                theme: '',
                 host,
             }
             const newConversation = this.conversationRepository.create(params)

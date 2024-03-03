@@ -6,19 +6,19 @@ import {
     Req,
     Res,
     HttpStatus,
-} from "@nestjs/common"
-import { JwtAuthGuard } from "src/auth/utils/guard.auth"
-import { Routes, Services } from "src/utils/constants"
-import { UsersService } from "./users.service"
-import { Request, Response } from "express"
-import { FindUserQuery, FindUserQueryByEmail } from "src/utils/types"
+} from '@nestjs/common'
+import { JwtAuthGuard } from 'src/auth/utils/guard.auth'
+import { Routes, Services } from 'src/utils/constants'
+import { UsersService } from './users.service'
+import { Request, Response } from 'express'
+import { FindUserQuery, FindUserQueryByEmail } from 'src/utils/types'
 
 @Controller(Routes.USERS)
 export class UsersController {
     constructor(@Inject(Services.USERS) private usersService: UsersService) {}
 
     @UseGuards(JwtAuthGuard)
-    @Get("findUserByEmail")
+    @Get('findUserByEmail')
     async findUser(@Req() req: Request, @Res() res: Response) {
         const query = req.query as FindUserQueryByEmail
 
@@ -28,7 +28,7 @@ export class UsersController {
     }
 
     @UseGuards(JwtAuthGuard)
-    @Get("findUsers")
+    @Get('findUsers')
     async findUsers(@Req() req: Request, @Res() res: Response) {
         const query = req.query as FindUserQuery
 

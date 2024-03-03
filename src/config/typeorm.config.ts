@@ -1,14 +1,14 @@
-import { DataSource, DataSourceOptions } from "typeorm"
-import { config } from "dotenv"
-import { ConfigService } from "@nestjs/config"
-import { join } from "path"
+import { DataSource, DataSourceOptions } from 'typeorm'
+import { config } from 'dotenv'
+import { ConfigService } from '@nestjs/config'
+import { join } from 'path'
 
 config()
 
 const configService = new ConfigService()
 
 export const dataSourceOptions: DataSourceOptions = {
-    type: "postgres",
+    type: 'postgres',
     url: process.env.DATABASE_URL,
     // host: configService.getOrThrow("PGHOST"),
     // port: configService.getOrThrow("PGPORT"),
@@ -18,7 +18,7 @@ export const dataSourceOptions: DataSourceOptions = {
     // migrations: ["migrations/**"],
     synchronize: true,
     // logging: true,
-    entities: [join(__dirname, "../database/typeorm/entities/*.{ts,js}")],
+    entities: [join(__dirname, '../database/typeorm/entities/*.{ts,js}')],
     ssl: true,
     // extra: {
     //     ssl: {

@@ -1,5 +1,5 @@
-import { Member } from "src/database/typeorm/entities/member"
-import { MembersForConversation, MemberToConversation } from "src/utils/types"
+import { Member } from 'src/database/typeorm/entities/member'
+import { MembersForConversation, MemberToConversation } from 'src/utils/types'
 
 export interface IMembersService {
     createMembers(

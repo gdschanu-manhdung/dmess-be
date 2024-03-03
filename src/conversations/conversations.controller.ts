@@ -6,13 +6,13 @@ import {
     Req,
     Res,
     HttpStatus,
-} from "@nestjs/common"
-import { UseGuards } from "@nestjs/common/decorators"
-import { JwtAuthGuard } from "src/auth/utils/guard.auth"
-import { Routes, Services } from "src/utils/constants"
-import { Request, Response } from "express"
-import { ConversationsService } from "./conversations.service"
-import { ConversationDetails, FindConversationQuery } from "src/utils/types"
+} from '@nestjs/common'
+import { UseGuards } from '@nestjs/common/decorators'
+import { JwtAuthGuard } from 'src/auth/utils/guard.auth'
+import { Routes, Services } from 'src/utils/constants'
+import { Request, Response } from 'express'
+import { ConversationsService } from './conversations.service'
+import { ConversationDetails, FindConversationQuery } from 'src/utils/types'
 
 @Controller(Routes.CONVERSATIONS)
 export class ConversationsController {
@@ -22,7 +22,7 @@ export class ConversationsController {
     ) {}
 
     @UseGuards(JwtAuthGuard)
-    @Post("createGroupConversation")
+    @Post('createGroupConversation')
     async createGroupConversation(@Req() req: Request, @Res() res: Response) {
         const conversationDetails = req.body as ConversationDetails
 
@@ -35,7 +35,7 @@ export class ConversationsController {
     }
 
     @UseGuards(JwtAuthGuard)
-    @Get("getConversationById")
+    @Get('getConversationById')
     async getConversationById(@Req() req: Request, @Res() res: Response) {
         const query = req.query as FindConversationQuery
 
@@ -46,7 +46,7 @@ export class ConversationsController {
     }
 
     @UseGuards(JwtAuthGuard)
-    @Post("createPrivateConversation")
+    @Post('createPrivateConversation')
     async createPrivateConversation(@Req() req: Request, @Res() res: Response) {
         const conversationDetails = req.body as ConversationDetails
 

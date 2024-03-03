@@ -1,12 +1,12 @@
-import { HttpException, HttpStatus, Inject } from "@nestjs/common"
-import { User } from "src/database/typeorm/entities/User"
-import { UsersService } from "src/users/users.service"
-import { Services } from "src/utils/constants"
-import { JwtPayload, ValidateUserDetails } from "src/utils/types"
-import { IAuthService } from "./auth"
-import { JwtService } from "@nestjs/jwt"
-import { UserDetails } from "src/utils/types"
-import { compareHash } from "src/utils/helper"
+import { HttpException, HttpStatus, Inject } from '@nestjs/common'
+import { User } from 'src/database/typeorm/entities/User'
+import { UsersService } from 'src/users/users.service'
+import { Services } from 'src/utils/constants'
+import { JwtPayload, ValidateUserDetails } from 'src/utils/types'
+import { IAuthService } from './auth'
+import { JwtService } from '@nestjs/jwt'
+import { UserDetails } from 'src/utils/types'
+import { compareHash } from 'src/utils/helper'
 
 export class AuthService implements IAuthService {
     constructor(
@@ -21,7 +21,7 @@ export class AuthService implements IAuthService {
 
         if (!user) {
             throw new HttpException(
-                "Invalid Credentials",
+                'Invalid Credentials',
                 HttpStatus.UNAUTHORIZED,
             )
         }
@@ -33,7 +33,7 @@ export class AuthService implements IAuthService {
 
         if (!isPasswordValid) {
             throw new HttpException(
-                "Wrong username or password",
+                'Wrong username or password',
                 HttpStatus.UNAUTHORIZED,
             )
         }

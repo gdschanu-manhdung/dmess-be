@@ -1,12 +1,12 @@
-import { Module } from "@nestjs/common"
-import { ConfigService, ConfigModule } from "@nestjs/config"
-import { TypeOrmModule } from "@nestjs/typeorm"
-import { Conversation } from "./typeorm/entities/conversation"
-import { Friend } from "./typeorm/entities/friend"
-import { Member } from "./typeorm/entities/member"
-import { Message } from "./typeorm/entities/message"
-import { Reaction } from "./typeorm/entities/reaction"
-import { User } from "./typeorm/entities/user"
+import { Module } from '@nestjs/common'
+import { ConfigService, ConfigModule } from '@nestjs/config'
+import { TypeOrmModule } from '@nestjs/typeorm'
+import { Conversation } from './typeorm/entities/conversation'
+import { Friend } from './typeorm/entities/friend'
+import { Member } from './typeorm/entities/member'
+import { Message } from './typeorm/entities/message'
+import { Reaction } from './typeorm/entities/reaction'
+import { User } from './typeorm/entities/user'
 
 @Module({
     imports: [
@@ -15,7 +15,7 @@ import { User } from "./typeorm/entities/user"
             imports: [ConfigModule],
             inject: [ConfigService],
             useFactory: async (configService: ConfigService) => ({
-                type: "postgres",
+                type: 'postgres',
                 url: process.env.DATABASE_URL,
                 // host: configService.get("PGHOST"),
                 // port: configService.get("PGPORT"),

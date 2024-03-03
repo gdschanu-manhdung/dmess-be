@@ -1,10 +1,10 @@
-import { Gender } from "src/utils/constants"
-import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from "typeorm"
-import { Conversation } from "./conversation"
-import { Friend } from "./friend"
-import { Member } from "./member"
+import { Gender } from 'src/utils/constants'
+import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from 'typeorm'
+import { Conversation } from './conversation'
+import { Friend } from './friend'
+import { Member } from './member'
 
-@Entity({ name: "users" })
+@Entity({ name: 'users' })
 export class User {
     @PrimaryGeneratedColumn()
     id: number
@@ -24,10 +24,10 @@ export class User {
     @Column()
     phone: string
 
-    @Column({ type: "date" })
+    @Column({ type: 'date' })
     dob: string
 
-    @Column({ type: "enum", enum: Gender, default: Gender.OTHER })
+    @Column({ type: 'enum', enum: Gender, default: Gender.OTHER })
     gender: Gender
 
     @OneToMany(() => Conversation, (conversation) => conversation.host)

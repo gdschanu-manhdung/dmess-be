@@ -1,16 +1,16 @@
-import { ConversationType } from "src/utils/constants"
+import { ConversationType } from 'src/utils/constants'
 import {
     Entity,
     Column,
     PrimaryGeneratedColumn,
     ManyToOne,
     OneToMany,
-} from "typeorm"
-import { Member } from "./member"
-import { Message } from "./message"
-import { User } from "./user"
+} from 'typeorm'
+import { Member } from './member'
+import { Message } from './message'
+import { User } from './user'
 
-@Entity({ name: "conversations" })
+@Entity({ name: 'conversations' })
 export class Conversation {
     @PrimaryGeneratedColumn()
     id: number
@@ -19,7 +19,7 @@ export class Conversation {
     name: string
 
     @Column({
-        type: "enum",
+        type: 'enum',
         enum: ConversationType,
         default: ConversationType.PRIVATE,
     })

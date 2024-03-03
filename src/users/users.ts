@@ -1,9 +1,9 @@
-import { User } from "src/database/typeorm/entities/User"
+import { User } from 'src/database/typeorm/entities/User'
 import {
     FindUserQuery,
     FindUserQueryByEmail,
     UserDetails,
-} from "src/utils/types"
+} from 'src/utils/types'
 
 export interface IUsersService {
     createUser(userDetails: UserDetails): Promise<User>

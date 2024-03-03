@@ -1,16 +1,16 @@
-import { Inject } from "@nestjs/common"
-import { InjectRepository } from "@nestjs/typeorm"
-import { ConversationsService } from "src/conversations/conversations.service"
-import { Member } from "src/database/typeorm/entities/member"
-import { UsersService } from "src/users/users.service"
-import { Services } from "src/utils/constants"
+import { Inject } from '@nestjs/common'
+import { InjectRepository } from '@nestjs/typeorm'
+import { ConversationsService } from 'src/conversations/conversations.service'
+import { Member } from 'src/database/typeorm/entities/member'
+import { UsersService } from 'src/users/users.service'
+import { Services } from 'src/utils/constants'
 import {
     FindConversationQuery,
     MembersForConversation,
     MemberToConversation,
-} from "src/utils/types"
-import { Repository } from "typeorm"
-import { IMembersService } from "./members"
+} from 'src/utils/types'
+import { Repository } from 'typeorm'
+import { IMembersService } from './members'
 
 export class MembersService implements IMembersService {
     constructor(

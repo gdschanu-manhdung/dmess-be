@@ -7,14 +7,14 @@ import {
     HttpStatus,
     Inject,
     Body,
-} from "@nestjs/common"
-import { Routes, Services } from "src/utils/constants"
-import { JwtAuthGuard, LocalAuthGuard } from "./utils/guard.auth"
-import { Request, Response } from "express"
-import { ValidateUserDetails } from "src/utils/types"
-import { AuthService } from "./auth.service"
-import { UsersService } from "src/users/users.service"
-import { CreateUserDto } from "./dto/CreateUser.dto"
+} from '@nestjs/common'
+import { Routes, Services } from 'src/utils/constants'
+import { JwtAuthGuard, LocalAuthGuard } from './utils/guard.auth'
+import { Request, Response } from 'express'
+import { ValidateUserDetails } from 'src/utils/types'
+import { AuthService } from './auth.service'
+import { UsersService } from 'src/users/users.service'
+import { CreateUserDto } from './dto/CreateUser.dto'
 
 @Controller(Routes.AUTH)
 export class AuthController {
@@ -23,13 +23,13 @@ export class AuthController {
         @Inject(Services.USERS) private usersService: UsersService,
     ) {}
 
-    @Post("register")
+    @Post('register')
     async register(@Body() createUserDto: CreateUserDto) {
         return this.usersService.createUser(createUserDto)
     }
 
     @UseGuards(LocalAuthGuard)
-    @Post("login")
+    @Post('login')
     async login(@Req() req: Request, @Res() res: Response) {
         const user = req.user as ValidateUserDetails
 
@@ -40,7 +40,7 @@ export class AuthController {
     }
 
     @UseGuards(JwtAuthGuard)
-    @Post("refresh")
+    @Post('refresh')
     async refreshToken(@Req() req: Request, @Res() res: Response) {
         const user = req.user as ValidateUserDetails
 

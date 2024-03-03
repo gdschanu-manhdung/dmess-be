@@ -5,13 +5,13 @@ import {
     Body,
     UseGuards,
     Delete,
-} from "@nestjs/common"
-import { JwtAuthGuard } from "src/auth/utils/guard.auth"
-import { Routes, Services } from "src/utils/constants"
-import { AddMemberDto } from "./dto/AddMember.dto"
-import { CreateMembersDto } from "./dto/CreateMembers.dto"
-import { RemoveMemberDto } from "./dto/RemoveMember.dto"
-import { MembersService } from "./members.service"
+} from '@nestjs/common'
+import { JwtAuthGuard } from 'src/auth/utils/guard.auth'
+import { Routes, Services } from 'src/utils/constants'
+import { AddMemberDto } from './dto/AddMember.dto'
+import { CreateMembersDto } from './dto/CreateMembers.dto'
+import { RemoveMemberDto } from './dto/RemoveMember.dto'
+import { MembersService } from './members.service'
 
 @Controller(Routes.MEMBERS)
 export class MembersController {
@@ -20,19 +20,19 @@ export class MembersController {
     ) {}
 
     @UseGuards(JwtAuthGuard)
-    @Post("createMembers")
+    @Post('createMembers')
     async createMembers(@Body() createMembersDto: CreateMembersDto) {
         this.membersService.createMembers(createMembersDto)
     }
 
     @UseGuards(JwtAuthGuard)
-    @Post("addMember")
+    @Post('addMember')
     async addMember(@Body() addMemberDto: AddMemberDto) {
         this.membersService.addMember(addMemberDto)
     }
 
     @UseGuards(JwtAuthGuard)
-    @Delete("removeMember")
+    @Delete('removeMember')
     async removeMember(@Body() removeMemberDto: RemoveMemberDto) {
         this.membersService.removeMember(removeMemberDto)
     }

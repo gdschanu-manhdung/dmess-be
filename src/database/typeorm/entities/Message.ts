@@ -4,12 +4,12 @@ import {
     PrimaryGeneratedColumn,
     ManyToOne,
     OneToMany,
-} from "typeorm"
-import { Conversation } from "./conversation"
-import { Member } from "./member"
-import { Reaction } from "./reaction"
+} from 'typeorm'
+import { Conversation } from './conversation'
+import { Member } from './member'
+import { Reaction } from './reaction'
 
-@Entity({ name: "messages" })
+@Entity({ name: 'messages' })
 export class Message {
     @PrimaryGeneratedColumn()
     id: number
@@ -20,7 +20,7 @@ export class Message {
     @Column()
     content: string
 
-    @Column({ type: "date" })
+    @Column({ type: 'date' })
     time: string
 
     @ManyToOne(() => Conversation, (conversation) => conversation.messages)

@@ -5,8 +5,8 @@ import {
     IsStrongPassword,
     MaxLength,
     IsDateString,
-} from "class-validator"
-import { Gender } from "src/utils/constants"
+} from 'class-validator'
+import { Gender } from 'src/utils/constants'
 
 export class CreateUserDto {
     @IsNotEmpty()
