@@ -1,12 +1,12 @@
-import { InjectRepository } from "@nestjs/typeorm"
-import { Friend } from "src/database/typeorm/entities/friend"
-import { FriendsStatus, Services } from "src/utils/constants"
-import { FriendsDetails, FriendsRequestQuery } from "src/utils/types"
-import { Repository } from "typeorm"
-import { FriendsRequestDto } from "./dto/friendsRequest.dto"
-import { IFriendsService } from "./friends"
-import { Inject } from "@nestjs/common"
-import { UsersService } from "src/users/users.service"
+import { InjectRepository } from '@nestjs/typeorm'
+import { Friend } from 'src/database/typeorm/entities/friend'
+import { FriendsStatus, Services } from 'src/utils/constants'
+import { FriendDetails, FriendsRequestQuery } from 'src/utils/types'
+import { Repository } from 'typeorm'
+import { FriendsRequestDto } from './dto/friendsRequest.dto'
+import { IFriendsService } from './friends'
+import { Inject } from '@nestjs/common'
+import { UsersService } from 'src/users/users.service'
 
 export class FriendsService implements IFriendsService {
     constructor(
@@ -15,17 +15,17 @@ export class FriendsService implements IFriendsService {
         private readonly friendRepository: Repository<Friend>,
     ) {}
     async sendRequest(friendsRequestDto: FriendsRequestDto) {
-        const friendsDetails = friendsRequestDto as FriendsDetails
+        const friendDetails = friendsRequestDto as FriendDetails
         const fromUser = await this.usersService.findUserById(
-            friendsDetails.fromUserId,
+            friendDetails.fromUserId,
         )
         const toUser = await this.usersService.findUserById(
-            friendsDetails.toUserId,
+            friendDetails.toUserId,
         )
 
         try {
             const params = {
-                ...friendsDetails,
+                ...friendDetails,
                 fromUser,
                 toUser,
                 status: FriendsStatus.SENT,
@@ -37,8 +37,8 @@ export class FriendsService implements IFriendsService {
             console.error(error)
         }
     }
-    async rejectRequest(friendsDetails: FriendsDetails) {
-        const requestId = friendsDetails.id
+    async rejectRequest(friendDetails: FriendDetails) {
+        const requestId = friendDetails.id
 
         try {
             const request = await this.friendRepository.findOne({
@@ -50,8 +50,8 @@ export class FriendsService implements IFriendsService {
             console.error(error)
         }
     }
-    async acceptRequest(friendsDetails: FriendsDetails) {
-        const requestId = friendsDetails.id
+    async acceptRequest(friendDetails: FriendDetails) {
+        const requestId = friendDetails.id
 
         try {
             const request = await this.friendRepository.findOne({

@@ -1,14 +1,14 @@
-import { IMessagesService } from "./messages"
-import { Inject } from "@nestjs/common"
-import { InjectRepository } from "@nestjs/typeorm"
-import { IMembersService } from "src/members/members"
-import { Repository } from "typeorm"
-import { Message } from "src/database/typeorm/entities/message"
-import { MessagesDetails } from "src/utils/types"
-import { SendMessageDto } from "./dto/SendMessage.dto"
-import { Services } from "src/utils/constants"
-import { ConversationsService } from "src/conversations/conversations.service"
-import { MembersService } from "src/members/members.service"
+import { IMessagesService } from './messages'
+import { Inject } from '@nestjs/common'
+import { InjectRepository } from '@nestjs/typeorm'
+import { IMembersService } from 'src/members/members'
+import { Repository } from 'typeorm'
+import { Message } from 'src/database/typeorm/entities/message'
+import { MessageDetails } from 'src/utils/types'
+import { SendMessageDto } from './dto/SendMessage.dto'
+import { Services } from 'src/utils/constants'
+import { ConversationsService } from 'src/conversations/conversations.service'
+import { MembersService } from 'src/members/members.service'
 
 export class MessagesService implements IMessagesService {
     constructor(
@@ -28,16 +28,16 @@ export class MessagesService implements IMessagesService {
                 conversationId: sendMessageDto.conversationId,
             })
 
-        const messagesDetails = {
+        const messageDetails = {
             member,
             conversation,
             reactions: [],
             time: sendMessageDto.time,
             content: sendMessageDto.content,
-        } as MessagesDetails
+        } as MessageDetails
 
         try {
-            const message = this.messageRepository.create(messagesDetails)
+            const message = this.messageRepository.create(messageDetails)
             return await this.messageRepository.save(message)
         } catch (error) {
             console.error(error)

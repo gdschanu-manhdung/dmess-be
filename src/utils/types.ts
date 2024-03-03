@@ -1,7 +1,12 @@
-import { Conversation } from "src/database/typeorm/entities/conversation"
-import { Member } from "src/database/typeorm/entities/member"
-import { Reaction } from "src/database/typeorm/entities/reaction"
-import { ConversationType, FriendsStatus, Gender } from "./constants"
+import { Conversation } from 'src/database/typeorm/entities/conversation'
+import { Member } from 'src/database/typeorm/entities/member'
+import { Reaction } from 'src/database/typeorm/entities/reaction'
+import {
+    ConversationType,
+    FriendsStatus,
+    Gender,
+    ReactionType,
+} from './constants'
 
 export type ValidateUserDetails = {
     id?: number
@@ -58,7 +63,7 @@ export type MemberToConversation = {
     conversationId: number
 }
 
-export type FriendsDetails = {
+export type FriendDetails = {
     id?: number
     fromUserId?: number
     toUserId?: number
@@ -71,11 +76,16 @@ export type FriendsRequestQuery = {
     status?: FriendsStatus
 }
 
-export type MessagesDetails = {
+export type MessageDetails = {
     id?: number
     member?: Member
     content?: string
     time?: string
     conversation?: Conversation
     reactions?: Reaction[]
+}
+
+export type ReactionDetails = {
+    id?: number
+    reactionType?: ReactionType
 }

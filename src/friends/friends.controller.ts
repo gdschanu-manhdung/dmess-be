@@ -8,13 +8,13 @@ import {
     Res,
     HttpStatus,
     Delete,
-} from "@nestjs/common"
-import { Request, Response } from "express"
-import { JwtAuthGuard } from "src/auth/utils/guard.auth"
-import { Routes, Services } from "src/utils/constants"
-import { FriendsDetails, FriendsRequestQuery } from "src/utils/types"
-import { FriendsRequestDto } from "./dto/friendsRequest.dto"
-import { FriendsService } from "./friends.service"
+} from '@nestjs/common'
+import { Request, Response } from 'express'
+import { JwtAuthGuard } from 'src/auth/utils/guard.auth'
+import { Routes, Services } from 'src/utils/constants'
+import { FriendDetails, FriendsRequestQuery } from 'src/utils/types'
+import { FriendsRequestDto } from './dto/friendsRequest.dto'
+import { FriendsService } from './friends.service'
 
 @Controller(Routes.FRIENDS)
 export class FriendsController {
@@ -23,13 +23,13 @@ export class FriendsController {
     ) {}
 
     @UseGuards(JwtAuthGuard)
-    @Post("sendRequest")
+    @Post('sendRequest')
     async sendRequest(@Body() friendsRequestDto: FriendsRequestDto) {
         await this.friendsService.sendRequest(friendsRequestDto)
     }
 
     @UseGuards(JwtAuthGuard)
-    @Post("findRequests")
+    @Post('findRequests')
     async findRequests(@Req() req: Request, @Res() res: Response) {
         const friendsRequestQuery = req.body as FriendsRequestQuery
 
@@ -40,14 +40,14 @@ export class FriendsController {
     }
 
     @UseGuards(JwtAuthGuard)
-    @Delete("rejectRequest")
-    async rejectRequest(@Body() friendsDetails: FriendsDetails) {
-        await this.friendsService.rejectRequest(friendsDetails)
+    @Delete('rejectRequest')
+    async rejectRequest(@Body() friendDetails: FriendDetails) {
+        await this.friendsService.rejectRequest(friendDetails)
     }
 
     @UseGuards(JwtAuthGuard)
-    @Post("acceptRequest")
-    async acceptRequest(@Body() friendsDetails: FriendsDetails) {
-        await this.friendsService.acceptRequest(friendsDetails)
+    @Post('acceptRequest')
+    async acceptRequest(@Body() friendDetails: FriendDetails) {
+        await this.friendsService.acceptRequest(friendDetails)
     }
 }
