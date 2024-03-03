@@ -19,7 +19,7 @@ export class MessagesService implements IMessagesService {
         @Inject(Services.MEMBERS)
         private readonly membersService: MembersService,
     ) {}
-    async createMessage(sendMessageDto: SendMessageDto) {
+    async sendMessage(sendMessageDto: SendMessageDto) {
         const member = await this.membersService.findMemberById(
             sendMessageDto.memberId,
         )
@@ -51,6 +51,22 @@ export class MessagesService implements IMessagesService {
             })
 
             return message
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    async unsendMessage(messageId: number) {
+        try {
+            const message = (await this.messageRepository.findOne({
+                where: {
+                    id: messageId,
+                },
+            })) as MessageDetails
+
+            message.content = ''
+
+            return await this.messageRepository.save(message)
         } catch (error) {
             console.error(error)
         }

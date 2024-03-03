@@ -18,7 +18,17 @@ export class MessagesController {
         const sendMessageDto = req.body as SendMessageDto
 
         return res.status(HttpStatus.OK).json({
-            message: await this.messagesService.createMessage(sendMessageDto),
+            message: await this.messagesService.sendMessage(sendMessageDto),
+        })
+    }
+
+    @UseGuards(JwtAuthGuard)
+    @Post('unsendMessage')
+    async unsendMessaage(@Req() req: Request, @Res() res: Response) {
+        const messageId = req.body.messageId
+
+        return res.status(HttpStatus.OK).json({
+            message: await this.messagesService.unsendMessage(messageId),
         })
     }
 }
