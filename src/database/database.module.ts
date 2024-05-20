@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common'
 import { ConfigService, ConfigModule } from '@nestjs/config'
 import { TypeOrmModule } from '@nestjs/typeorm'
-import { Conversation } from './typeorm/entities/conversation'
-import { Friend } from './typeorm/entities/friend'
-import { Member } from './typeorm/entities/member'
-import { Message } from './typeorm/entities/message'
-import { Reaction } from './typeorm/entities/reaction'
-import { User } from './typeorm/entities/user'
+import { Conversation } from './typeorm/entities/Conversation'
+import { Friend } from './typeorm/entities/Friend'
+import { Member } from './typeorm/entities/Member'
+import { Message } from './typeorm/entities/Message'
+import { Reaction } from './typeorm/entities/Reaction'
+import { User } from './typeorm/entities/User'
 
 @Module({
     imports: [

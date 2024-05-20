@@ -12,8 +12,8 @@ import { JwtAuthGuard } from 'src/auth/utils/guard.auth'
 import { Routes, Services } from 'src/utils/constants'
 import { ReactionsService } from './reactions.service'
 import { Request, Response } from 'express'
-import { SendReactionDto } from './dto/SendReaction.dto'
 import { RemoveReactionDto } from './dto/RemoveReaction.dto'
+import { SendReactionDto } from './dto/SendReaction.dto'
 
 @Controller(Routes.REACTIONS)
 export class ReactionsController {
