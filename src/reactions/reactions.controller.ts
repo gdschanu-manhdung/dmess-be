@@ -12,7 +12,7 @@ import { JwtAuthGuard } from 'src/auth/utils/guard.auth'
 import { Routes, Services } from 'src/utils/constants'
 import { ReactionsService } from './reactions.service'
 import { Request, Response } from 'express'
-import { SendReactionDto } from './dto/sendReaction.dto'
+import { SendReactionDto } from './dto/SendReaction.dto'
 import { RemoveReactionDto } from './dto/RemoveReaction.dto'
 
 @Controller(Routes.REACTIONS)

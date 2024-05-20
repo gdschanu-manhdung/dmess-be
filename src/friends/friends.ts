@@ -1,6 +1,6 @@
-import { Friend } from 'src/database/typeorm/entities/friend'
+import { Friend } from 'src/database/typeorm/entities/Friend'
 import { FriendDetails } from 'src/utils/types'
-import { FriendsRequestDto } from './dto/friendsRequest.dto'
+import { FriendsRequestDto } from './dto/FriendsRequest.dto'
 
 export interface IFriendsService {
     sendRequest(friendsRequestDto: FriendsRequestDto): Promise<Friend>

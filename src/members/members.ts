@@ -1,4 +1,4 @@
-import { Member } from 'src/database/typeorm/entities/member'
+import { Member } from 'src/database/typeorm/entities/Member'
 import { MembersForConversation, MemberToConversation } from 'src/utils/types'
 
 export interface IMembersService {

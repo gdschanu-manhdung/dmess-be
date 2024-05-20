@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common'
 import { TypeOrmModule } from '@nestjs/typeorm'
-import { Reaction } from 'src/database/typeorm/entities/reaction'
+import { Reaction } from 'src/database/typeorm/entities/Reaction'
 import { MembersModule } from 'src/members/members.module'
 import { MessagesModule } from 'src/messages/messages.module'
 import { Services } from 'src/utils/constants'

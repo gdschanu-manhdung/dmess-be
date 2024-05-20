@@ -1,7 +1,7 @@
 import { forwardRef, Inject } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { ConversationsService } from 'src/conversations/conversations.service'
-import { Member } from 'src/database/typeorm/entities/member'
+import { Member } from 'src/database/typeorm/entities/Member'
 import { UsersService } from 'src/users/users.service'
 import { Services } from 'src/utils/constants'
 import {

@@ -1,4 +1,4 @@
-import { Conversation } from 'src/database/typeorm/entities/conversation'
+import { Conversation } from 'src/database/typeorm/entities/Conversation'
 import { User } from 'src/database/typeorm/entities/User'
 import {
     FindUserQuery,

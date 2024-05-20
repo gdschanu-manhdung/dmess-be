@@ -1,7 +1,7 @@
 import { forwardRef, Module } from '@nestjs/common'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { ConversationsModule } from 'src/conversations/conversations.module'
-import { Member } from 'src/database/typeorm/entities/member'
+import { Member } from 'src/database/typeorm/entities/Member'
 import { UsersModule } from 'src/users/users.module'
 import { Services } from 'src/utils/constants'
 import { MembersController } from './members.controller'

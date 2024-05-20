@@ -1,7 +1,7 @@
 import { ReactionType } from 'src/utils/constants'
 import { Column, Entity, PrimaryGeneratedColumn, ManyToOne } from 'typeorm'
-import { Member } from './member'
-import { Message } from './message'
+import { Member } from './Member'
+import { Message } from './Message'
 
 @Entity({ name: 'reactions' })
 export class Reaction {

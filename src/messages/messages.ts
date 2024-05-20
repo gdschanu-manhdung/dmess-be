@@ -1,4 +1,4 @@
-import { Message } from 'src/database/typeorm/entities/message'
+import { Message } from 'src/database/typeorm/entities/Message'
 import { SendMessageDto } from './dto/SendMessage.dto'
 
 export interface IMessagesService {

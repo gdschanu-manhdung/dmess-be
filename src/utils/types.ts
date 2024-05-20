@@ -1,6 +1,6 @@
-import { Conversation } from 'src/database/typeorm/entities/conversation'
-import { Member } from 'src/database/typeorm/entities/member'
-import { Reaction } from 'src/database/typeorm/entities/reaction'
+import { Conversation } from 'src/database/typeorm/entities/Conversation'
+import { Member } from 'src/database/typeorm/entities/Member'
+import { Reaction } from 'src/database/typeorm/entities/Reaction'
 import {
     ConversationType,
     FriendsStatus,

@@ -7,17 +7,9 @@ import {
 import { IUsersService } from './users'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
-import {
-    Injectable,
-    HttpException,
-    HttpStatus,
-    Inject,
-    forwardRef,
-} from '@nestjs/common'
+import { Injectable, HttpException, HttpStatus } from '@nestjs/common'
 import { filterFindUserQuery, hashPassword } from 'src/utils/helper'
-import { MembersService } from 'src/members/members.service'
-import { Services } from 'src/utils/constants'
-import { Member } from 'src/database/typeorm/entities/member'
+import { Member } from 'src/database/typeorm/entities/Member'
 
 @Injectable()
 export class UsersService implements IUsersService {

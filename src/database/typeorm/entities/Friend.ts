@@ -1,6 +1,6 @@
 import { FriendsStatus } from 'src/utils/constants'
 import { Column, Entity, PrimaryGeneratedColumn, ManyToOne } from 'typeorm'
-import { User } from './user'
+import { User } from './User'
 
 @Entity({ name: 'friends' })
 export class Friend {

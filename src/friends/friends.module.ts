@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common'
 import { TypeOrmModule } from '@nestjs/typeorm'
-import { Friend } from 'src/database/typeorm/entities/friend'
+import { Friend } from 'src/database/typeorm/entities/Friend'
 import { UsersModule } from 'src/users/users.module'
 import { Services } from 'src/utils/constants'
 import { FriendsController } from './friends.controller'

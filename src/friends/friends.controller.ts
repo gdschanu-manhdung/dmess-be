@@ -13,7 +13,7 @@ import { Request, Response } from 'express'
 import { JwtAuthGuard } from 'src/auth/utils/guard.auth'
 import { Routes, Services } from 'src/utils/constants'
 import { FriendDetails, FriendsRequestQuery } from 'src/utils/types'
-import { FriendsRequestDto } from './dto/friendsRequest.dto'
+import { FriendsRequestDto } from './dto/FriendsRequest.dto'
 import { FriendsService } from './friends.service'
 
 @Controller(Routes.FRIENDS)

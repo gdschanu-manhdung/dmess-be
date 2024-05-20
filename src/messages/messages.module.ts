@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { ConversationsModule } from 'src/conversations/conversations.module'
-import { Message } from 'src/database/typeorm/entities/message'
+import { Message } from 'src/database/typeorm/entities/Message'
 import { MembersModule } from 'src/members/members.module'
 import { Services } from 'src/utils/constants'
 import { MessagesController } from './messages.controller'
