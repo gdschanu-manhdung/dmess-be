@@ -38,6 +38,8 @@ export class AuthService implements IAuthService {
             )
         }
 
+        console.log(user)
+
         return user
     }
 

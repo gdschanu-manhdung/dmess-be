@@ -34,7 +34,7 @@ export class AuthController {
         const user = req.user as ValidateUserDetails
 
         return res.status(HttpStatus.OK).json({
-            user: { id: user.id, email: user.email },
+            user: user,
             accessToken: this.authService.generateAccessToken(user),
         })
     }
